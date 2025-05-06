@@ -17,3 +17,4 @@ if (!empty($_GET['login']) && !empty($_GET['password'])) {
     echo 'Variaveis indefinidas.';
     echo '<br /><a href="index.html">Voltar</a>';
 }
+?>
