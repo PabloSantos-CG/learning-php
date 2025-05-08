@@ -12,6 +12,8 @@ if (!empty($_POST['login']) && !empty($_POST['password'])) {
         $_SESSION['theme'] = $theme;
         header('Location: welcome.php');
     } else {
-        $message = 'Não foi possível autenticar o usuário, tente novamente.';
+        $message = 'Não foi possível autenticar, usuário ou senha inválido.';
     }
+} elseif (!empty($_POST['login']) || !empty($_POST['password'])) {
+    $message = 'Preencha todos os dados.';
 }
