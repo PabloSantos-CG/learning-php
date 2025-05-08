@@ -1,15 +1,11 @@
 <?php
-/*
- * Verifica se existe um cookie com o nome PHPSESSID (nome padrão de id do php)
- * Se existir, quer dizer que o usuário já veio de sessões anteriores
- * caso contrário ele redireciona para a página de login
- */
-if (isset($_COOKIE[session_name()])) {
-    session_start();
-} else {
-    header('Location: index.php');
-}
 
+session_start();
+
+if (empty($_SESSION['login'])) {
+    header('Location: index.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
