@@ -7,7 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login básico</title>
-
+    <style>
+        .error {
+            font-size: .8rem;
+            color: red;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +39,9 @@
 
         <button type="submit">Enviar</button>
 
-        <?= isset($message) ? '<br/>' . $message : ''; ?>
+        <?php if (isset($message)): ?>
+            <span class="error"><?= $message ?></span>
+        <?php endif ?>
     </form>
 </body>
 
