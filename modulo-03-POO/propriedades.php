@@ -7,6 +7,8 @@ class Car
     public int $year;
     public int $doorsQtd;
     public float $enginePower;
+    // posso ter também propriedades estáticas:
+    // public static int $prop;
 
     public function __construct(string $name, int $year, int $doorsQtd, float $enginePower)
     {
