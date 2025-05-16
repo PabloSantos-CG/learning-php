@@ -1,0 +1,15 @@
+{
+    "name": "pablo/biblioteca",
+    "description": "Exercicio de biblioteca em OOP",
+    "autoload": {
+        "psr-4": {
+            "Pablo\\Biblioteca\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pablo Santos"
+        }
+    ],
+    "require": {}
+}
