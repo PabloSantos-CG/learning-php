@@ -8,16 +8,16 @@ class Bookcase
     /**
      * @var array<string, Book[]>
      */
-    private array $collection = [];
+    private array $bookCollection = [];
 
     public function getAllCategories(): array
     {
-        return array_keys($this->collection);
+        return array_keys($this->bookCollection);
     }
 
     public function getAllBooks(): array
     {
-        $allValuesInArray = array_values($this->collection);
+        $allValuesInArray = array_values($this->bookCollection);
         $allBooks = array_merge(...$allValuesInArray);
 
         return $allBooks;
@@ -25,12 +25,12 @@ class Bookcase
 
     private function categoryExists(string $categoryName): bool
     {
-        return key_exists($categoryName, $this->collection);
+        return key_exists($categoryName, $this->bookCollection);
     }
 
     public function getBooksByCategory(string $categoryName): array
     {
-        return $this->categoryExists($categoryName) ? $this->collection[$categoryName] : [];
+        return $this->categoryExists($categoryName) ? $this->bookCollection[$categoryName] : [];
     }
 
     public function getBook(string $bookTitle, string $categoryName): ?Book
@@ -40,7 +40,7 @@ class Bookcase
         }
 
         $bookFound = array_filter(
-            $this->collection,
+            $this->bookCollection,
             fn(Book $book) => $book->getTitle() === $bookTitle
         );
 
@@ -69,7 +69,7 @@ class Bookcase
             return false;
         }
 
-        array_push($this->collection[$categoryName], $book);
+        array_push($this->bookCollection[$categoryName], $book);
 
         return true;
     }
@@ -98,17 +98,17 @@ class Bookcase
             return false;
         }
 
-        foreach ($this->collection[$categoryName] as $index => $book) {
+        foreach ($this->bookCollection[$categoryName] as $index => $book) {
             if ($book->getTitle() === $bookTitle) {
                 /** PROBLEMA 
                  * Gera problemas com indexação da sublista tornando-a uma lista associativa
                  */
-                unset($this->collection[$categoryName][$index]);
+                unset($this->bookCollection[$categoryName][$index]);
 
                 /** SOLUÇÃO 
                  * Reindexando a lista de livros de uma categoria específica
                  */
-                $this->collection[$categoryName] = array_values($this->collection[$categoryName]);
+                $this->bookCollection[$categoryName] = array_values($this->bookCollection[$categoryName]);
 
                 break;
             }
@@ -137,7 +137,7 @@ class Bookcase
             return false;
         }
 
-        unset($this->collection[$categoryName]);
+        unset($this->bookCollection[$categoryName]);
 
         return true;
     }
