@@ -99,9 +99,14 @@ class Bookcase
 
         foreach ($this->collection[$categoryName] as $index => $objectBook) {
             if ($objectBook->title === $bookTitle) {
+                /** PROBLEMA 
+                 * Gera problemas com indexação da sublista tornando-a uma lista associativa
+                 */
                 unset($this->collection[$categoryName][$index]);
 
-                // reindexando a lista de livros de uma categoria específica
+                /** SOLUÇÃO 
+                 * Reindexando a lista de livros de uma categoria específica
+                 */
                 $this->collection[$categoryName] = array_values($this->collection[$categoryName]);
 
                 break;
@@ -111,6 +116,28 @@ class Bookcase
         return true;
     }
 
-    // implementar método removeCategory() e canRemoveCategory()
-    
+    private function canRemoveCategory(string $categoryName): bool
+    {
+        if (!$this->categoryExists($categoryName)) {
+            return false;
+        }
+
+        // não pode apagar se houver dados (obj livro) na sublista
+        if (!empty($this->getBooksByCategory($categoryName))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function removeCategory(string $categoryName): bool
+    {
+        if (!$this->canRemoveCategory($categoryName)) {
+            return false;
+        }
+
+        unset($this->collection[$categoryName]);
+
+        return true;
+    }
 }
