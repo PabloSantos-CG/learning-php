@@ -5,6 +5,9 @@ namespace Pablo\Biblioteca;
 
 class Bookcase
 {
+    /**
+     * @var array<string, Book[]>
+     */
     private array $collection = [];
 
     public function getAllCategories(): array
@@ -60,15 +63,13 @@ class Bookcase
         return true;
     }
 
-    public function createBook(string $title, string $author, string $category): bool
+    public function createBook(Book $book, string $categoryName): bool
     {
-        if (!$this->canCreateBook($title, $category)) {
+        if (!$this->canCreateBook($book->getTitle(), $categoryName)) {
             return false;
         }
 
-        $book = new Book($title, $author);
-
-        array_push($this->collection[$category], $book);
+        array_push($this->collection[$categoryName], $book);
 
         return true;
     }
@@ -97,8 +98,8 @@ class Bookcase
             return false;
         }
 
-        foreach ($this->collection[$categoryName] as $index => $objectBook) {
-            if ($objectBook->title === $bookTitle) {
+        foreach ($this->collection[$categoryName] as $index => $book) {
+            if ($book->getTitle() === $bookTitle) {
                 /** PROBLEMA 
                  * Gera problemas com indexação da sublista tornando-a uma lista associativa
                  */
