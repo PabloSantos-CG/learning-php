@@ -16,6 +16,16 @@ class Book
         return $this->available;
     }
 
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->title;
+    }
+
     public function markAsBorrowed(): void
     {
         $this->available = false;
