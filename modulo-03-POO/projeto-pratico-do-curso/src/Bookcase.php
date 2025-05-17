@@ -48,7 +48,7 @@ class Bookcase
         return reset($bookFound) ?: null;
     }
 
-    private function canCreateBook(string $title, string $categoryName): bool
+    private function canAddBook(string $title, string $categoryName): bool
     {
         if (!$this->categoryExists($categoryName)) {
             return false;
@@ -63,9 +63,9 @@ class Bookcase
         return true;
     }
 
-    public function createBook(Book $book, string $categoryName): bool
+    public function addBook(Book $book, string $categoryName): bool
     {
-        if (!$this->canCreateBook($book->getTitle(), $categoryName)) {
+        if (!$this->canAddBook($book->getTitle(), $categoryName)) {
             return false;
         }
 
