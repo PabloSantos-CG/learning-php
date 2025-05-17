@@ -48,6 +48,26 @@ class Bookcase
         return reset($bookFound) ?: null;
     }
 
+    public function getBooksByTitle(string $title)
+    {
+        if (empty($this->bookCollection) || empty($title)) {
+            return null;
+        }
+
+        $books = [];
+
+        foreach ($this->bookCollection as $key => $bookList) {
+            $foundBooks = array_filter(
+                $bookList,
+                fn($currentBook) => str_contains($currentBook->getTitle(), $title)
+            );
+
+            array_push($books, $foundBooks);
+        }
+
+        return array_merge(...$books);
+    }
+
     private function canAddBook(string $title, string $categoryName): bool
     {
         if (!$this->categoryExists($categoryName)) {
