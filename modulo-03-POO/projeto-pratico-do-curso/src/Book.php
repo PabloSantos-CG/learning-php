@@ -5,11 +5,14 @@ namespace Pablo\Biblioteca;
 class Book
 {
     private bool $available = true;
+    private string $title;
+    private string $author;
 
-    function __construct(
-        private readonly string $title,
-        private readonly string $author,
-    ) {}
+    public function __construct(string $title, string $author,)
+    {
+        $this->title = strtoupper($title);
+        $this->author = strtoupper($author);
+    }
 
     public function getAvailableStatus(): bool
     {
