@@ -12,8 +12,8 @@ abstract class User
     protected array $borrowedBooks;
 
     public function __construct(
-        protected string $name,
-        protected int $allowedQuantityBook,
+        protected readonly string $name,
+        protected readonly int $allowedQuantityBook,
     ) {
         $this->borrowedBooks = [];
     }

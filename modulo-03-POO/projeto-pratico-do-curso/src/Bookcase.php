@@ -40,7 +40,7 @@ class Bookcase
         }
 
         $bookFound = array_filter(
-            $this->bookCollection,
+            $this->bookCollection[$categoryName],
             fn(Book $book) => $book->getTitle() === $bookTitle
         );
 
@@ -137,6 +137,16 @@ class Bookcase
         return true;
     }
 
+    public function addCategory(string $categoryName): bool
+    {
+        if ($this->categoryExists($categoryName)) {
+            return false;
+        }
+
+        $this->bookCollection[$categoryName] = [];
+        return true;
+    }
+
     private function canRemoveCategory(string $categoryName): bool
     {
         if (!$this->categoryExists($categoryName)) {
@@ -158,6 +168,22 @@ class Bookcase
         }
 
         unset($this->bookCollection[$categoryName]);
+
+        return true;
+    }
+
+    public function toggleStatusBook(Book $book, string $categoryName, bool $available): bool
+    {
+        /**
+         * @var Book $loopBook
+         */
+        foreach ($this->bookCollection[$categoryName] as $loopBook) {
+            if ($loopBook->getTitle() === $book->getTitle()) {
+                $available ? $loopBook->markAsAvailable() : $loopBook->markAsBorrowed();
+
+                return true;
+            }
+        }
 
         return true;
     }
