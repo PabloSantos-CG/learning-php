@@ -26,7 +26,7 @@ class Student extends User
             return false;
         }
 
-        array_push($this->borrowedBooks);
+        array_push($this->borrowedBooks, $book);
 
         return true;
     }
@@ -47,7 +47,7 @@ class Student extends User
 
         $this->borrowedBooks = array_filter(
             $this->borrowedBooks,
-            fn($currentBook) => $currentBook->getTitle() === $book->getTitle()
+            fn($currentBook) => $currentBook->getTitle() != $book->getTitle()
         );
 
         return true;

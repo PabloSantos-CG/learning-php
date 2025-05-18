@@ -14,7 +14,9 @@ abstract class User
     public function __construct(
         protected string $name,
         protected int $allowedQuantityBook,
-    ) {}
+    ) {
+        $this->borrowedBooks = [];
+    }
 
     abstract public function getName(): string;
 
