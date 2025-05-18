@@ -18,7 +18,7 @@ class Teacher extends User
 
     private function canAddBorrowedBook(): bool
     {
-        return count($this->borrowedBooks) <= $this->allowedQuantity;
+        return count($this->borrowedBooks) < $this->allowedQuantityBook;
     }
 
     public function addBorrowedBook(Book $book): bool
@@ -32,14 +32,14 @@ class Teacher extends User
         return true;
     }
 
-    private function canRemoveBorrowedBook(Book $book): bool
+    private function canRemoveBorrowedBook(): bool
     {
         return count($this->borrowedBooks) > 0;
     }
 
     public function removeBorrowedBook(Book $book): bool
     {
-        if (!$this->canRemoveBorrowedBook($book)) {
+        if (!$this->canRemoveBorrowedBook()) {
             return false;
         }
 

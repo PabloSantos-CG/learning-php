@@ -17,7 +17,7 @@ class Student extends User
 
     private function canBorrow(): bool
     {
-        return count($this->borrowedBooks) <= $this->allowedQuantity;
+        return count($this->borrowedBooks) < $this->allowedQuantityBook;
     }
 
     public function addBorrowedBook(Book $book): bool
@@ -27,7 +27,6 @@ class Student extends User
         }
 
         array_push($this->borrowedBooks);
-        $this->allowedQuantity++;
 
         return true;
     }
