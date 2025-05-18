@@ -5,12 +5,18 @@ namespace Pablo\Biblioteca;
 
 abstract class User
 {
-    protected string $name;
-    protected int $allowedQuantity;
+
     /**
      * @var Book[]
      */
     protected array $borrowedBooks;
+
+    public function __construct(
+        protected string $name,
+        protected int $allowedQuantity,
+    ) {}
+
+    abstract public function getName(): string;
 
     /**
      * @return Book[]

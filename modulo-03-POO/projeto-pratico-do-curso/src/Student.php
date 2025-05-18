@@ -5,6 +5,10 @@ namespace Pablo\Biblioteca;
 
 class Student extends User
 {
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
     public function getBorrowedBooks(): array
     {
@@ -13,7 +17,7 @@ class Student extends User
 
     private function canBorrow(): bool
     {
-        return $this->allowedQuantity === 0;
+        return count($this->borrowedBooks) <= $this->allowedQuantity;
     }
 
     public function addBorrowedBook(Book $book): bool
