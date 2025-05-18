@@ -1,3 +1,3 @@
 ## Exercício Prático
 
-Esta pasta é sobre um exercício proposto pelo professor, vale destacar que não repliquei o código dele, sempre que ele lançava um desafio eu resolvia do meu jeito e depois apenas assistia a aula para ver qual foi a solução e caminho pelo qual ele seguiu e o que eu podia aprender com isso.
+ Esta pasta contém um exercício de Programação Orientada a Objetos (POO) proposto pelo professor. É importante destacar que não copiei o código apresentado por ele. Sempre que um desafio era proposto, eu procurava resolvê-lo por conta própria primeiro. Só depois assistia à aula, para comparar as abordagens, entender a lógica que ele utilizou e identificar o que eu poderia aprender com a solução dele.
